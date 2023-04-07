@@ -8,24 +8,32 @@ export default function Remedios({navigation}) {
     const [load, setLoad] = useState(false);
 
     useEffect(() => {
-        pegaRemedios();
+        pegaRemedios()
+            .then(() => {
+                setLoad(true);
+            });
     },[]);
 
     if (load) {
         return(
             <View>
-                <FlatList 
-                    data={remedios}
-                    renderItem={({item, index}) => {
-                        return(
-                            <View>
-                                <Text>Nome: {item.nome}</Text>
-                                <Text>Quantidade: {item.quantidade}</Text>
-                            </View>
-                        )
-                    }} />
-
-                <Text>Você está na Home</Text>
+                {
+                    remedios.length != 0 ?
+                    <FlatList 
+                        data={remedios}
+                        renderItem={({item, index}) => {
+                            return(
+                                <View>
+                                    <Text>Nome: {item.nome}</Text>
+                                    <Text>Quantidade: {item.quantidade}</Text>
+                                </View>
+                            )
+                        }} />
+                    :
+                    <View>
+                        <Text>Sem remédios</Text>
+                    </View>
+                }
                 <Button title="Adicionar" onPress={() => navigation.navigate('AdRemedio')} />
             </View>
         );

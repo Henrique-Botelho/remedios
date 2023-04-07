@@ -16,25 +16,15 @@ export default function MainProvider({children}) {
             let todos = response.map(element => {
                 return JSON.parse(element[1]);
             });
-                        
+            setRemedios(todos);
         } catch (error) {
             console.log(error);
         }
     }
 
-    const adicionarRemedio = async (nome, quantCaixa, quantDia,) => {
-        setRemedios([
-            {
-                nome: 'novo',
-                quantidade: 1
-            }
-        ]);
-    }
-
     const data = {
-        pegaRemedios,
         remedios,
-        adicionarRemedio
+        pegaRemedios,
     }
 
     return(
