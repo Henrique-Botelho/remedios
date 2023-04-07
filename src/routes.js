@@ -8,20 +8,18 @@ import MainProvider from "./context/mainContext";
 
 import Remedios from "./pages/Remedios";
 import AdRemedio from "./pages/AdRemedio";
+import EditaRemedio from "./pages/EditaRemedio";
 
 export default function Routes() {
-    return(
-        <NavigationContainer>
-            <MainProvider>
-                <Stack.Navigator>
-                    <Stack.Screen 
-                        name="Remedios" 
-                        component={Remedios} />
-                    <Stack.Screen 
-                        name="AdRemedio" 
-                        component={AdRemedio} />
-                </Stack.Navigator>
-            </MainProvider>
-        </NavigationContainer>
-    );
+  return (
+    <NavigationContainer>
+      <MainProvider>
+        <Stack.Navigator>
+          <Stack.Screen name="Remedios" component={Remedios} />
+          <Stack.Screen name="AdRemedio" component={AdRemedio} />
+          <Stack.Screen name="EditaRemedio" component={EditaRemedio} />
+        </Stack.Navigator>
+      </MainProvider>
+    </NavigationContainer>
+  );
 }

@@ -3,22 +3,23 @@ import {
   SafeAreaView,
   View,
   Text,
-  TextInput,
   StyleSheet,
+  ActivityIndicator,
+  TextInput,
   TouchableOpacity,
-  ActivityIndicator
 } from "react-native";
 
 import { MainContext } from "../../context/mainContext";
 
-export default function AdRemedio({ navigation }) {
-  const { adicionarRemedio, pegaRemedios } = useContext(MainContext);
+export default function EditaRemedio({ navigation, route }) {
+  const { pegaRemedios, editaRemedio } = useContext(MainContext);
 
-  const [nome, setNome] = useState();
-  const [quantCaixa, setQuantCaixa] = useState();
-  const [quantDia, setQuantDia] = useState();
+  const [nome, setNome] = useState(route.params[1].nome);
+  const [quantCaixa, setQuantCaixa] = useState(route.params[1].quantCaixa);
+  const [quantDia, setQuantDia] = useState(route.params[1].quantDia);
+  const [quantidade, setQuantidade] = useState(route.params[1].quantidade.toString());
 
-  const [adicionando, setAdicionando] = useState(false);
+  const [editando, setEditando] = useState();
 
   return (
     <SafeAreaView style={styles.page}>
@@ -43,22 +44,34 @@ export default function AdRemedio({ navigation }) {
         value={quantDia}
         keyboardType="numeric"
       />
+      <TextInput 
+        placeholder="Quantidade"
+        style={styles.inputs}
+        onChangeText={(newText) => setQuantidade(newText)}
+        value={quantidade}
+        keyboardType="numeric"
+      />
+      
       <TouchableOpacity
         onPress={() => {
-          setAdicionando(true);
-          adicionarRemedio(nome.trim(), quantCaixa, quantDia)
-            .then(() => {
-              pegaRemedios()
-              .then(() => {
-                  setAdicionando(false);
-                  navigation.navigate('Remedios');
-                })
+          setEditando(true);
+          editaRemedio(
+            route.params,
+            nome.trim(),
+            quantCaixa,
+            quantDia,
+            quantidade
+          ).then(() => {
+            pegaRemedios().then(() => {
+              setEditando(false);
+              navigation.navigate("Remedios");
             });
+          });
         }}
       >
-        <Text>Adicionar</Text>
+        <Text>Editar</Text>
       </TouchableOpacity>
-      {adicionando && <ActivityIndicator size='large' />}
+      {editando && <ActivityIndicator size="large" />}
     </SafeAreaView>
   );
 }
@@ -73,5 +86,5 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     width: "50%",
     textAlign: "center",
-  }
+  },
 });
