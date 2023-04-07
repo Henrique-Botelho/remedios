@@ -17,7 +17,9 @@ export default function EditaRemedio({ navigation, route }) {
   const [nome, setNome] = useState(route.params[1].nome);
   const [quantCaixa, setQuantCaixa] = useState(route.params[1].quantCaixa);
   const [quantDia, setQuantDia] = useState(route.params[1].quantDia);
-  const [quantidade, setQuantidade] = useState(route.params[1].quantidade.toString());
+  const [quantidade, setQuantidade] = useState(
+    route.params[1].quantidade.toString()
+  );
 
   const [editando, setEditando] = useState();
 
@@ -44,14 +46,14 @@ export default function EditaRemedio({ navigation, route }) {
         value={quantDia}
         keyboardType="numeric"
       />
-      <TextInput 
+      <TextInput
         placeholder="Quantidade"
         style={styles.inputs}
         onChangeText={(newText) => setQuantidade(newText)}
         value={quantidade}
         keyboardType="numeric"
       />
-      
+
       <TouchableOpacity
         onPress={() => {
           setEditando(true);

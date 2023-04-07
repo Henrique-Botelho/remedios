@@ -17,7 +17,7 @@ export default function MainProvider({ children }) {
         let dataAtual = new Date();
         let dataAntiga = new Date(remedio.data);
 
-        let diff = Math.trunc((dataAtual - dataAntiga)/1000/60/60/24);
+        let diff = Math.trunc((dataAtual - dataAntiga) / 1000 / 60 / 60 / 24);
 
         let desconto = diff * parseInt(remedio.quantDia);
 
@@ -38,7 +38,6 @@ export default function MainProvider({ children }) {
 
   const adicionarRemedio = async (nome, quantCaixa, quantDia) => {
     try {
-
       let dataAtual = new Date(); // Pego a data atual
       let ISOdata = dataAtual.toISOString(); // Deixo ela no formato ISO
 
@@ -47,17 +46,22 @@ export default function MainProvider({ children }) {
         quantCaixa,
         quantDia,
         quantidade: parseInt(quantCaixa),
-        data: ISOdata
-      }
+        data: ISOdata,
+      };
 
       await AsyncStorage.setItem(ISOdata, JSON.stringify(novoRemedio));
-
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
-  const editaRemedio = async (antigo, nome, quantCaixa, quantDia, quantidade) => {
+  const editaRemedio = async (
+    antigo,
+    nome,
+    quantCaixa,
+    quantDia,
+    quantidade
+  ) => {
     try {
       let remedio = antigo[1];
       remedio.nome = nome;
@@ -66,22 +70,22 @@ export default function MainProvider({ children }) {
       remedio.quantidade = parseInt(quantidade);
 
       await AsyncStorage.setItem(antigo[0], JSON.stringify(remedio));
-
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const recarregaEstoque = async (item) => {
     try {
       let remedio = item[1];
-      remedio.quantidade = parseInt(remedio.quantidade) + parseInt(remedio.quantCaixa);
+      remedio.quantidade =
+        parseInt(remedio.quantidade) + parseInt(remedio.quantCaixa);
 
       await AsyncStorage.setItem(item[0], JSON.stringify(remedio));
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const excluirUmRemedio = async (idItem) => {
     try {
@@ -89,7 +93,7 @@ export default function MainProvider({ children }) {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const excluirTodosRemedios = async () => {
     try {
@@ -97,7 +101,7 @@ export default function MainProvider({ children }) {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const data = {
     remedios,
@@ -106,7 +110,7 @@ export default function MainProvider({ children }) {
     excluirTodosRemedios,
     excluirUmRemedio,
     editaRemedio,
-    recarregaEstoque
+    recarregaEstoque,
   };
 
   return <MainContext.Provider value={data}>{children}</MainContext.Provider>;

@@ -6,7 +6,7 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 
 import { MainContext } from "../../context/mainContext";
@@ -46,19 +46,17 @@ export default function AdRemedio({ navigation }) {
       <TouchableOpacity
         onPress={() => {
           setAdicionando(true);
-          adicionarRemedio(nome.trim(), quantCaixa, quantDia)
-            .then(() => {
-              pegaRemedios()
-              .then(() => {
-                  setAdicionando(false);
-                  navigation.navigate('Remedios');
-                })
+          adicionarRemedio(nome.trim(), quantCaixa, quantDia).then(() => {
+            pegaRemedios().then(() => {
+              setAdicionando(false);
+              navigation.navigate("Remedios");
             });
+          });
         }}
       >
         <Text>Adicionar</Text>
       </TouchableOpacity>
-      {adicionando && <ActivityIndicator size='large' />}
+      {adicionando && <ActivityIndicator size="large" />}
     </SafeAreaView>
   );
 }
@@ -73,5 +71,5 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     width: "50%",
     textAlign: "center",
-  }
+  },
 });
