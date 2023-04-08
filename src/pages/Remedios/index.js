@@ -101,7 +101,7 @@ export default function Remedios({ navigation }) {
                     </View>
                     <View style={styles.itemDireita}>
                       <TouchableOpacity
-                        style={styles.caixaQuant}
+                        style={item[1].quantidade > 5 ? styles.caixaQuant : styles.caixaQuantAcab}
                         onPress={() => {
                           recarregaEstoque(item);
                           pegaRemedios();
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   btnExcluir: {
-    backgroundColor: "#E6626F",
+    backgroundColor: "#a2ca8e",
     width: "40%",
     height: 35,
     justifyContent: "center",
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
   },
   btnEditar: {
     borderRadius: 20,
-    backgroundColor: "#F5E19C",
+    backgroundColor: "#66af91",
     justifyContent: "center",
     alignItems: "center",
     width: "50%",
@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
   },
   editar: {
     fontSize: 15,
-    color: "#E6626F",
+    color: "#EBF2F2",
   },
   itemDireita: {
     width: "40%",
@@ -235,7 +235,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   caixaQuant: {
-    backgroundColor: "#66AF91",
+    backgroundColor: "#abdb25",
+    borderRadius: 60,
+    width: "90%",
+    height: "90%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  caixaQuantAcab: {
+    backgroundColor: "#e6626f",
     borderRadius: 60,
     width: "90%",
     height: "90%",
