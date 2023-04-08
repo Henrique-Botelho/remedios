@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   ImageBackground,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Alert
 } from "react-native";
 import Footer from "../../components/Footer";
 import { styles } from "./styles";
@@ -24,42 +25,59 @@ export default function AdRemedio({ navigation }) {
 
   const [adicionando, setAdicionando] = useState(false);
 
-  return (
-      <KeyboardAvoidingView keyboardVerticalOffset={5} style={styles.safeArea} behavior='height'>
-        <View style={styles.caixaImg}>
-          <ImageBackground style={styles.imgAdRem} source={require('../../../assets/adrem.jpg')}>
-            <View style={styles.caixaTitPagina}>
-              <Text style={styles.titPagina}>Adicionar Remédio</Text>
-            </View>
-          </ImageBackground>
-        </View>
-        <View style={styles.page}>
+  const alertaCamposVazios = () => {
+    Alert.alert('Campos Vazios', 'Todos os campos devem ser preenchidos', [
+      {
+        text: 'Ok',
+        onPress: () => null
+      }
+    ])
+  }
 
-          <Text style={styles.titInputs}>Nome</Text>
-          <TextInput
-            maxLength={20}
-            style={styles.inputs}
-            onChangeText={(newText) => setNome(newText)}
-            value={nome}
-            />
-          <Text style={styles.titInputs}>Quantidade da caixa</Text>
-          <TextInput
-            
-            style={styles.inputs}
-            onChangeText={(newText) => setQuantCaixa(newText)}
-            value={quantCaixa}
-            keyboardType="numeric"
-            />
-          <Text style={styles.titInputs}>Quantidade por dia</Text>
-          <TextInput
-            style={styles.inputs}
-            onChangeText={(newText) => setQuantDia(newText)}
-            value={quantDia}
-            keyboardType="numeric"
-          />
-          <TouchableOpacity
-            style={styles.caixaAd}
-            onPress={() => {
+  return (
+    <KeyboardAvoidingView
+      keyboardVerticalOffset={5}
+      style={styles.safeArea}
+      behavior="height"
+    >
+      <View style={styles.caixaImg}>
+        <ImageBackground
+          style={styles.imgAdRem}
+          source={require("../../../assets/adrem.jpg")}
+        >
+          <View style={styles.caixaTitPagina}>
+            <Text style={styles.titPagina}>Adicionar Remédio</Text>
+          </View>
+        </ImageBackground>
+      </View>
+      <View style={styles.page}>
+        <Text style={styles.titInputs}>Nome</Text>
+        <TextInput
+          maxLength={20}
+          style={styles.inputs}
+          onChangeText={(newText) => setNome(newText)}
+          value={nome}
+        />
+        <Text style={styles.titInputs}>Quantidade da caixa</Text>
+        <TextInput
+          style={styles.inputs}
+          onChangeText={(newText) => setQuantCaixa(newText)}
+          value={quantCaixa}
+          keyboardType="numeric"
+        />
+        <Text style={styles.titInputs}>Quantidade por dia</Text>
+        <TextInput
+          style={styles.inputs}
+          onChangeText={(newText) => setQuantDia(newText)}
+          value={quantDia}
+          keyboardType="numeric"
+        />
+        <TouchableOpacity
+          style={styles.caixaAd}
+          onPress={() => {
+            if (!nome || !quantCaixa || !quantDia) {
+              alertaCamposVazios();
+            } else {
               setAdicionando(true);
               adicionarRemedio(nome.trim(), quantCaixa, quantDia).then(() => {
                 pegaRemedios().then(() => {
@@ -67,13 +85,14 @@ export default function AdRemedio({ navigation }) {
                   navigation.navigate("Remedios");
                 });
               });
-            }}
-          >
-            <Text style={styles.adicionar}>Adicionar</Text>
-          </TouchableOpacity>
-          {adicionando && <ActivityIndicator size="large" />}
-        </View>
-        <Footer />
-      </KeyboardAvoidingView>
+            }
+          }}
+        >
+          <Text style={styles.adicionar}>Adicionar</Text>
+        </TouchableOpacity>
+        {adicionando && <ActivityIndicator size="large" />}
+      </View>
+      <Footer />
+    </KeyboardAvoidingView>
   );
 }

@@ -8,7 +8,8 @@ import {
   TextInput,
   TouchableOpacity,
   ImageBackground,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Alert
 } from "react-native";
 import Footer from "../../components/Footer";
 import { styles } from "./styles";
@@ -26,6 +27,15 @@ export default function EditaRemedio({ navigation, route }) {
   );
 
   const [editando, setEditando] = useState();
+
+  const alertaCamposVazios = () => {
+    Alert.alert('Campos Vazios', 'Todos os campos devem ser preenchidos', [
+      {
+        text: 'Ok',
+        onPress: () => null
+      }
+    ])
+  }
 
   return (
     <KeyboardAvoidingView keyboardVerticalOffset={18} style={styles.safeArea} behavior='height'>
@@ -70,19 +80,23 @@ export default function EditaRemedio({ navigation, route }) {
         <TouchableOpacity
           style={styles.caixaEd}
           onPress={() => {
-            setEditando(true);
-            editaRemedio(
-              route.params,
-              nome.trim(),
-              quantCaixa,
-              quantDia,
-              quantidade
-            ).then(() => {
-              pegaRemedios().then(() => {
-                setEditando(false);
-                navigation.navigate("Remedios");
+            if (!nome || !quantCaixa || !quantDia || !quantidade) {
+              alertaCamposVazios();
+            } else {
+              setEditando(true);
+              editaRemedio(
+                route.params,
+                nome.trim(),
+                quantCaixa,
+                quantDia,
+                quantidade
+              ).then(() => {
+                pegaRemedios().then(() => {
+                  setEditando(false);
+                  navigation.navigate("Remedios");
+                });
               });
-            });
+            }
           }}
         >
           <Text style={styles.editar}>Editar</Text>
