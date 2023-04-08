@@ -116,7 +116,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderTopLeftRadius: 20,
-    width: '75%'
+    width: '75%',
+    borderWidth: 1,
+    borderColor: '#666666'
   },
   titPagina: {
     fontSize: 25,

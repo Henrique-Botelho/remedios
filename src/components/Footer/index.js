@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#ADE0DB',
         borderTopWidth: 1,
-        borderTopColor: '#666666'
+        borderTopColor: '#666666',
+        minHeight: 35
     },
     texto: {
         color: '#66AF91'
