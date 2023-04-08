@@ -11,6 +11,7 @@ import {
   KeyboardAvoidingView
 } from "react-native";
 import Footer from "../../components/Footer";
+import { styles } from "./styles";
 
 import { MainContext } from "../../context/mainContext";
 
@@ -31,7 +32,7 @@ export default function EditaRemedio({ navigation, route }) {
       <View style={styles.caixaImg}>
         <ImageBackground style={styles.imgAdRem} source={require('../../../assets/edrem.jpg')}>
           <View style={styles.caixaTitPagina}>
-            <Text style={styles.titPagina}>Editar {route.params[1].nome}</Text>
+            <Text style={styles.titPagina}>Editar Remédio</Text>
           </View>
         </ImageBackground>
       </View>
@@ -92,74 +93,3 @@ export default function EditaRemedio({ navigation, route }) {
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#EBF2F2",
-    width: "100%",
-  },
-  caixaImg: {
-    height: '30%',
-    width: '100%'
-  },
-  imgAdRem: {
-    width: '100%',
-    height: '100%',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end'
-  },
-  caixaTitPagina: {
-    height: 50,
-    backgroundColor: '#ADE0DB',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderTopLeftRadius: 20,
-    width: '75%',
-    borderWidth: 1,
-    borderColor: '#666666'
-  },
-  titPagina: {
-    fontSize: 25,
-    color: '#66AF91'
-  },
-  page: {
-    height: "65%",
-    width: "90%",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    backgroundColor: "#EBF2F2",
-    paddingTop: 40,
-  },
-  titInputs: {
-    textAlign: 'left',
-    width: '75%',
-    color: '#66AF91',
-    fontSize: 20,
-  },
-  inputs: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#A2CA8E',
-    width: "75%",
-    textAlign: "left",
-    fontSize: 15,
-    color: '#A2CA8E',
-    backgroundColor: '#FFF',
-    borderRadius: 10,
-    height: 40,
-    paddingLeft: 10
-  },
-  caixaEd: {
-    backgroundColor: '#66AF91',
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '50%',
-    borderRadius: 20
-  },
-  editar: {
-    color: '#EBF2F2',
-    fontSize: 20
-  }
-});

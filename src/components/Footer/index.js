@@ -15,12 +15,12 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#ADE0DB',
+        backgroundColor: '#ebf2f2',
         borderTopWidth: 1,
         borderTopColor: '#666666',
         minHeight: 35
     },
     texto: {
-        color: '#66AF91'
+        color: '#66af91'
     }
 });

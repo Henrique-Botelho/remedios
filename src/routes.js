@@ -37,16 +37,16 @@ export default function Routes() {
 }
 
 const headerOptions = {
-  title: "Remédios",
+  title: "Controle de Remédios",
   headerStyle: {
-    backgroundColor: "#ADE0DB",
+    backgroundColor: "#ebf2f2",
     height: 90,
     borderBottomWidth: 1,
     borderBottomColor: '#666666'
   },
   headerTitleAlign: "center",
-  headerTintColor: "#66AF91",
+  headerTintColor: "#66af91",
   headerTitleStyle: {
-    fontSize: 30
+    fontSize: 20
   },
 };
