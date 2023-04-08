@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   safeArea: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#D0F2E7",
+    backgroundColor: "#EBF2F2",
     width: "100%",
   },
   page: {
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     width: "90%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#D0F2E7",
+    backgroundColor: "#EBF2F2",
     paddingTop: 40,
   },
   caixaAd: {
@@ -154,6 +154,9 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: "center",
     alignItems: "center",
+    borderWidth: 1,
+    borderColor: '#666666',
+    borderRadius: 10
   },
   adicionar: {
     fontSize: 40,
@@ -167,7 +170,9 @@ const styles = StyleSheet.create({
   },
   item: {
     borderRadius: 10,
-    backgroundColor: "#EBF2F2",
+    borderWidth: 1,
+    borderColor: '#d9dbdb',
+    backgroundColor: "#ffffff",
     width: "100%",
     marginTop: 15,
     marginBottom: 10,

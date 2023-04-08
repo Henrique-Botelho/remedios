@@ -15,7 +15,9 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#ADE0DB'
+        backgroundColor: '#ADE0DB',
+        borderTopWidth: 1,
+        borderTopColor: '#666666'
     },
     texto: {
         color: '#66AF91'

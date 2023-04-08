@@ -41,10 +41,12 @@ const headerOptions = {
   headerStyle: {
     backgroundColor: "#ADE0DB",
     height: 90,
+    borderBottomWidth: 1,
+    borderBottomColor: '#666666'
   },
   headerTitleAlign: "center",
   headerTintColor: "#66AF91",
   headerTitleStyle: {
-    fontSize: 30,
+    fontSize: 30
   },
 };

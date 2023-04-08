@@ -7,7 +7,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   ActivityIndicator,
-  ImageBackground
+  ImageBackground,
+  KeyboardAvoidingView
 } from "react-native";
 import Footer from "../../components/Footer";
 
@@ -23,58 +24,56 @@ export default function AdRemedio({ navigation }) {
   const [adicionando, setAdicionando] = useState(false);
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.caixaImg}>
-        <ImageBackground style={styles.imgAdRem} source={require('../../../assets/adrem.jpg')}>
-          <View style={styles.caixaTitPagina}>
-            <Text style={styles.titPagina}>Adicionar Remédio</Text>
-          </View>
-        </ImageBackground>
-      </View>
-      <View style={styles.page}>
+      <KeyboardAvoidingView keyboardVerticalOffset={5} style={styles.safeArea} behavior='height'>
+        <View style={styles.caixaImg}>
+          <ImageBackground style={styles.imgAdRem} source={require('../../../assets/adrem.jpg')}>
+            <View style={styles.caixaTitPagina}>
+              <Text style={styles.titPagina}>Adicionar Remédio</Text>
+            </View>
+          </ImageBackground>
+        </View>
+        <View style={styles.page}>
 
-        <TextInput
-          maxLength={20}
-          placeholder="Nome do remédio"
-          style={styles.inputs}
-          placeholderTextColor='#66AF91'
-          onChangeText={(newText) => setNome(newText)}
-          value={nome}
+          <Text style={styles.titInputs}>Nome</Text>
+          <TextInput
+            maxLength={20}
+            style={styles.inputs}
+            onChangeText={(newText) => setNome(newText)}
+            value={nome}
+            />
+          <Text style={styles.titInputs}>Quantidade da caixa</Text>
+          <TextInput
+            
+            style={styles.inputs}
+            onChangeText={(newText) => setQuantCaixa(newText)}
+            value={quantCaixa}
+            keyboardType="numeric"
+            />
+          <Text style={styles.titInputs}>Quantidade por dia</Text>
+          <TextInput
+            style={styles.inputs}
+            onChangeText={(newText) => setQuantDia(newText)}
+            value={quantDia}
+            keyboardType="numeric"
           />
-        <TextInput
-          placeholder="Quantidade da caixa"
-          style={styles.inputs}
-          placeholderTextColor='#66AF91'
-          onChangeText={(newText) => setQuantCaixa(newText)}
-          value={quantCaixa}
-          keyboardType="numeric"
-          />
-        <TextInput
-          placeholder="Quantidade por dia"
-          style={styles.inputs}
-          placeholderTextColor='#66AF91'
-          onChangeText={(newText) => setQuantDia(newText)}
-          value={quantDia}
-          keyboardType="numeric"
-        />
-        <TouchableOpacity
-          style={styles.caixaAd}
-          onPress={() => {
-            setAdicionando(true);
-            adicionarRemedio(nome.trim(), quantCaixa, quantDia).then(() => {
-              pegaRemedios().then(() => {
-                setAdicionando(false);
-                navigation.navigate("Remedios");
+          <TouchableOpacity
+            style={styles.caixaAd}
+            onPress={() => {
+              setAdicionando(true);
+              adicionarRemedio(nome.trim(), quantCaixa, quantDia).then(() => {
+                pegaRemedios().then(() => {
+                  setAdicionando(false);
+                  navigation.navigate("Remedios");
+                });
               });
-            });
-          }}
-        >
-          <Text style={styles.adicionar}>Adicionar</Text>
-        </TouchableOpacity>
-        {adicionando && <ActivityIndicator size="large" />}
-      </View>
-      <Footer />
-    </SafeAreaView>
+            }}
+          >
+            <Text style={styles.adicionar}>Adicionar</Text>
+          </TouchableOpacity>
+          {adicionando && <ActivityIndicator size="large" />}
+        </View>
+        <Footer />
+      </KeyboardAvoidingView>
   );
 }
 
@@ -82,8 +81,9 @@ const styles = StyleSheet.create({
   safeArea: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#D0F2E7",
+    backgroundColor: "#EBF2F2",
     width: "100%",
+    height: '100%'
   },
   caixaImg: {
     height: '30%',
@@ -101,7 +101,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderTopLeftRadius: 20,
-    width: '75%'
+    width: '75%',
+    borderWidth: 1,
+    borderColor: '#666666'
   },
   titPagina: {
     fontSize: 25,
@@ -112,8 +114,14 @@ const styles = StyleSheet.create({
     width: "90%",
     justifyContent: "space-evenly",
     alignItems: "center",
-    backgroundColor: "#D0F2E7",
+    backgroundColor: "#EBF2F2",
     paddingTop: 40,
+  },
+  titInputs: {
+    textAlign: 'left',
+    width: '75%',
+    color: '#66AF91',
+    fontSize: 20
   },
   inputs: {
     borderBottomWidth: 1,
@@ -121,7 +129,11 @@ const styles = StyleSheet.create({
     width: "75%",
     textAlign: "left",
     fontSize: 20,
-    color: '#66AF91'
+    color: '#66AF91',
+    backgroundColor: '#FFF',
+    borderRadius: 10,
+    height: 40,
+    paddingLeft: 10
   },
   caixaAd: {
     backgroundColor: '#66AF91',
