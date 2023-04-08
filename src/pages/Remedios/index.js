@@ -38,12 +38,12 @@ export default function Remedios({ navigation }) {
       "Tem certeza que deseja exlcuir esse remédio?",
       [
         {
-          text: "Cancelar",
+          text: 'Cancelar',
           onPress: () => null,
           style: "cancel",
         },
         {
-          text: "Sim",
+          text: 'Sim',
           onPress: () => {
             excluirUmRemedio(idItem);
             pegaRemedios();
@@ -52,6 +52,25 @@ export default function Remedios({ navigation }) {
       ]
     );
   };
+
+  const alertaAtualizarRemedio = (item) => {
+    Alert.alert(
+      'Recarregar remédio?', 
+      `Abastecer ${item[1].nome} com ${item[1].quantCaixa} unidades?`, [
+        {
+          text: 'Cancelar',
+          onPress: () => null,
+          style: 'cancel'
+        },
+        {
+          text: 'Sim',
+          onPress: () => {
+            recarregaEstoque(item);
+            pegaRemedios();
+          }
+        }
+      ]);
+  }
 
   if (load) {
     return (
@@ -104,8 +123,7 @@ export default function Remedios({ navigation }) {
                       <TouchableOpacity
                         style={item[1].quantidade > 5 ? styles.caixaQuant : styles.caixaQuantAcab}
                         onPress={() => {
-                          recarregaEstoque(item);
-                          pegaRemedios();
+                          alertaAtualizarRemedio(item);
                         }}
                       >
                         <Text style={styles.quantidade}>
