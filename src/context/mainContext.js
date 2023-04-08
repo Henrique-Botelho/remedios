@@ -19,15 +19,16 @@ export default function MainProvider({ children }) {
 
         let diff = Math.trunc((dataAtual - dataAntiga) / 1000 / 60 / 60 / 24);
 
-        let desconto = diff * parseInt(remedio.quantDia);
-
-        let novaQuantidade = parseInt(remedio.quantidade) - parseInt(desconto);
-
-        remedio.quantidade = novaQuantidade;
-        remedio.data = dataAtual.toISOString();
-
-        AsyncStorage.setItem(element[0], JSON.stringify(remedio));
-
+        if (diff != 0) {
+          let desconto = diff * parseInt(remedio.quantDia);
+  
+          let novaQuantidade = parseInt(remedio.quantidade) - parseInt(desconto);
+  
+          remedio.quantidade = novaQuantidade;
+          remedio.data = dataAtual.toISOString();
+  
+          AsyncStorage.setItem(element[0], JSON.stringify(remedio));
+        }
         return [element[0], remedio];
       });
       setRemedios(todos);

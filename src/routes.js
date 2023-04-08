@@ -40,9 +40,7 @@ const headerOptions = {
   title: "Controle de Remédios",
   headerStyle: {
     backgroundColor: "#ebf2f2",
-    height: 90,
-    borderBottomWidth: 1,
-    borderBottomColor: '#666666'
+    height: 90
   },
   headerTitleAlign: "center",
   headerTintColor: "#66af91",
