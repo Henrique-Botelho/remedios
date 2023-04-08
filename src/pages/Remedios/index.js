@@ -38,12 +38,12 @@ export default function Remedios({ navigation }) {
       "Tem certeza que deseja exlcuir esse remédio?",
       [
         {
-          text: 'Cancelar',
+          text: "Cancelar",
           onPress: () => null,
           style: "cancel",
         },
         {
-          text: 'Sim',
+          text: "Sim",
           onPress: () => {
             excluirUmRemedio(idItem);
             pegaRemedios();
@@ -55,27 +55,30 @@ export default function Remedios({ navigation }) {
 
   const alertaAtualizarRemedio = (item) => {
     Alert.alert(
-      'Recarregar remédio?', 
-      `Abastecer ${item[1].nome} com ${item[1].quantCaixa} unidades?`, [
+      "Recarregar remédio?",
+      `Abastecer ${item[1].nome} com ${item[1].quantCaixa} unidades?`,
+      [
         {
-          text: 'Cancelar',
+          text: "Cancelar",
           onPress: () => null,
-          style: 'cancel'
+          style: "cancel",
         },
         {
-          text: 'Sim',
+          text: "Sim",
           onPress: () => {
             recarregaEstoque(item);
             pegaRemedios();
-          }
-        }
-      ]);
-  }
+          },
+        },
+      ]
+    );
+  };
 
   if (load) {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.page}>
+          <Text style={styles.addRemedio}>Adicionar Remédio</Text>
           <TouchableOpacity
             style={styles.caixaAd}
             onPress={() => navigation.navigate("AdRemedio")}
@@ -121,7 +124,11 @@ export default function Remedios({ navigation }) {
                     </View>
                     <View style={styles.itemDireita}>
                       <TouchableOpacity
-                        style={item[1].quantidade > 5 ? styles.caixaQuant : styles.caixaQuantAcab}
+                        style={
+                          item[1].quantidade > 5
+                            ? styles.caixaQuant
+                            : styles.caixaQuantAcab
+                        }
                         onPress={() => {
                           alertaAtualizarRemedio(item);
                         }}

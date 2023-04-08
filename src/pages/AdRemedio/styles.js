@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     safeArea: {
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: "#EBF2F2",
+      backgroundColor: "#FFF",
       width: "100%",
       height: '100%'
     },
@@ -17,28 +17,28 @@ export const styles = StyleSheet.create({
       width: '100%',
       height: '100%',
       justifyContent: 'flex-end',
-      alignItems: 'flex-end'
+      alignItems: 'flex-start'
     },
     caixaTitPagina: {
       height: 50,
-      backgroundColor: '#ADE0DB',
+      backgroundColor: '#66AF91',
       justifyContent: 'center',
       alignItems: 'center',
-      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
       width: '75%',
       borderWidth: 1,
       borderColor: '#666666'
     },
     titPagina: {
       fontSize: 25,
-      color: '#666666'
+      color: '#EBF2F2'
     },
     page: {
       height: "65%",
       width: "90%",
       justifyContent: "space-evenly",
       alignItems: "center",
-      backgroundColor: "#EBF2F2",
+      backgroundColor: "#FFF",
       paddingTop: 40,
     },
     titInputs: {
@@ -48,7 +48,9 @@ export const styles = StyleSheet.create({
       fontSize: 20
     },
     inputs: {
-      borderBottomWidth: 1,
+      borderWidth: 1,
+      borderColor: '#A2CA8E',
+      borderBottomWidth: 2,
       borderBottomColor: '#A2CA8E',
       width: "75%",
       textAlign: "left",

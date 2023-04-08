@@ -16,6 +16,11 @@ export const styles = StyleSheet.create({
       backgroundColor: "#FFF",
       paddingTop: 40,
     },
+    addRemedio: {
+      fontSize: 20,
+      color: '#66af91',
+      marginBottom: 15
+    },
     caixaAd: {
       marginBottom: 20,
       backgroundColor: "#66AF91",
