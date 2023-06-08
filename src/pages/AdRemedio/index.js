@@ -11,9 +11,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { styles } from "./styles";
-
 import * as Animatable from "react-native-animatable";
-
 import { MainContext } from "../../context/mainContext";
 
 export default function AdRemedio({ navigation }) {
