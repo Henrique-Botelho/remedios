@@ -3,41 +3,36 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     safeArea: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#FFF",
+    },
+    page: {
+      padding: 10,
+      flex: 1,
       justifyContent: "center",
       alignItems: "center",
       backgroundColor: "#FFF",
       width: "100%",
     },
-    page: {
-      height: "95%",
-      width: "90%",
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "#FFF",
-      paddingTop: 40,
-    },
-    addRemedio: {
-      fontSize: 20,
-      color: '#66af91',
-      marginBottom: 15
-    },
-    caixaAd: {
-      marginBottom: 20,
-      backgroundColor: "#66AF91",
-      width: 50,
+    caixaAddRemedio: {
+      width: "100%",
       height: 50,
+      justifyContent: 'center',
+      alignItems: "center",
+    },
+    btnAdd: {
+      padding: 10,
+      height: "100%",
+      backgroundColor: "#026f6e",
       justifyContent: "center",
       alignItems: "center",
-      borderWidth: 1,
-      borderColor: '#666666',
-      borderRadius: 10
+      borderRadius: 5,
     },
     adicionar: {
-      fontSize: 40,
-      textAlign: "center",
-      color: "#EBF2F2",
-      width: 60,
-      height: 60,
+      fontSize: 20,
+      color: "#FFF",
     },
     flatlist: {
       width: "100%",
@@ -45,8 +40,8 @@ export const styles = StyleSheet.create({
     item: {
       borderRadius: 10,
       borderWidth: 1,
-      borderColor: '#d9dbdb',
-      backgroundColor: "#ffffff",
+      borderColor: '#026f6e',
+      backgroundColor: "#FFF",
       width: "100%",
       marginTop: 15,
       marginBottom: 10,
@@ -63,7 +58,7 @@ export const styles = StyleSheet.create({
     },
     nomeItem: {
       fontSize: 25,
-      color: "#66AF91",
+      color: "#026f6e",
     },
     infoItem: {
       flexDirection: "row",
@@ -79,20 +74,20 @@ export const styles = StyleSheet.create({
       justifyContent: "space-evenly",
     },
     btnExcluir: {
-      backgroundColor: "#f5e19c",
+      backgroundColor: "#184848",
       width: "40%",
       height: 35,
       justifyContent: "center",
       alignItems: "center",
-      borderRadius: 20,
+      borderRadius: 5,
     },
     excluir: {
       fontSize: 15,
-      color: "#666666",
+      color: "#FFF",
     },
     btnEditar: {
-      borderRadius: 20,
-      backgroundColor: "#efae78",
+      borderRadius: 5,
+      backgroundColor: "#007878",
       justifyContent: "center",
       alignItems: "center",
       width: "50%",
@@ -100,7 +95,7 @@ export const styles = StyleSheet.create({
     },
     editar: {
       fontSize: 15,
-      color: "#666666",
+      color: "#FFF",
     },
     itemDireita: {
       width: "40%",
@@ -109,23 +104,23 @@ export const styles = StyleSheet.create({
       alignItems: "center",
     },
     caixaQuant: {
-      backgroundColor: "#abdb25",
-      borderRadius: 60,
-      width: "90%",
-      height: "90%",
+      backgroundColor: "#a8c030",
+      borderRadius: 5,
+      width: "75%",
+      height: "75%",
       justifyContent: "center",
       alignItems: "center",
     },
     caixaQuantAcab: {
-      backgroundColor: "#e6626f",
-      borderRadius: 60,
-      width: "90%",
-      height: "90%",
+      backgroundColor: "#ea2a15",
+      borderRadius: 5,
+      width: "75%",
+      height: "75%",
       justifyContent: "center",
       alignItems: "center",
     },
     quantidade: {
       fontSize: 40,
-      color: "#EBF2F2",
+      color: "#FFF",
     },
 });

@@ -3,18 +3,16 @@ import {
   SafeAreaView,
   View,
   Text,
-  Button,
   ActivityIndicator,
   FlatList,
   TouchableOpacity,
   Alert,
-  Image,
-  StyleSheet,
 } from "react-native";
-import Footer from "../../components/Footer";
 import { styles } from "./styles";
-
+import Header from "../../components/Header";
 import { MainContext } from "../../context/mainContext";
+import { AntDesign } from "@expo/vector-icons";
+import * as Animatable from "react-native-animatable";
 
 export default function Remedios({ navigation }) {
   const {
@@ -77,14 +75,19 @@ export default function Remedios({ navigation }) {
   if (load) {
     return (
       <SafeAreaView style={styles.safeArea}>
+        <Header />
         <View style={styles.page}>
-          <Text style={styles.addRemedio}>Adicionar Remédio</Text>
-          <TouchableOpacity
-            style={styles.caixaAd}
-            onPress={() => navigation.navigate("AdRemedio")}
-          >
-            <Text style={styles.adicionar}>+</Text>
-          </TouchableOpacity>
+          <Animatable.View animation="fadeInDownBig" delay={500} style={styles.caixaAddRemedio}>
+            <TouchableOpacity
+              style={styles.btnAdd}
+              onPress={() => navigation.navigate("AdRemedio")}
+            >
+              <Text style={styles.adicionar}>
+                <AntDesign name="plus" size={24} color="#FFF" />
+                Adicionar Remédio
+              </Text>
+            </TouchableOpacity>
+          </Animatable.View>
           {remedios.length != 0 && (
             <FlatList
               showsVerticalScrollIndicator={false}
@@ -144,7 +147,6 @@ export default function Remedios({ navigation }) {
             />
           )}
         </View>
-        <Footer />
       </SafeAreaView>
     );
   } else {
@@ -153,7 +155,6 @@ export default function Remedios({ navigation }) {
         <View style={styles.page}>
           <ActivityIndicator size="large" />
         </View>
-        <Footer />
       </SafeAreaView>
     );
   }
