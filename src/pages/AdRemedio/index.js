@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import {
   SafeAreaView,
-  View,
+  ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
@@ -10,7 +10,6 @@ import {
   Alert,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import Footer from "../../components/Footer";
 import { styles } from "./styles";
 
 import * as Animatable from "react-native-animatable";
@@ -44,48 +43,52 @@ export default function AdRemedio({ navigation }) {
         <Text style={styles.textTitulo}>Adicionar Remédio</Text>
       </Animatable.View>
       <Animatable.View animation="fadeInUp" style={styles.page}>
-        <KeyboardAvoidingView behavior="position" enabled style={styles.form}>
-          <TextInput
-            placeholder="Nome"
-            maxLength={20}
-            style={styles.inputs}
-            onChangeText={(newText) => setNome(newText)}
-            value={nome}
-          />
-          <TextInput
-            placeholder="Quantidade da caixa"
-            style={styles.inputs}
-            onChangeText={(newText) => setQuantCaixa(newText)}
-            value={quantCaixa}
-            keyboardType="numeric"
-          />
-          <TextInput
-            placeholder="Quantidade por dia"
-            style={styles.inputs}
-            onChangeText={(newText) => setQuantDia(newText)}
-            value={quantDia}
-            keyboardType="numeric"
-          />
-          <TouchableOpacity
-            style={styles.caixaAd}
-            onPress={() => {
-              if (!nome || !quantCaixa || !quantDia) {
-                alertaCamposVazios();
-              } else {
-                setAdicionando(true);
-                adicionarRemedio(nome.trim(), quantCaixa, quantDia).then(() => {
-                  pegaRemedios().then(() => {
-                    setAdicionando(false);
-                    navigation.navigate("Remedios");
-                  });
-                });
-              }
-            }}
-          >
-            <Text style={styles.adicionar}>Adicionar</Text>
-          </TouchableOpacity>
-          {adicionando && <ActivityIndicator size="large" />}
-        </KeyboardAvoidingView>
+        <ScrollView>
+          <KeyboardAvoidingView behavior="padding" enabled>
+            <TextInput
+              placeholder="Nome"
+              maxLength={20}
+              style={styles.inputs}
+              onChangeText={(newText) => setNome(newText)}
+              value={nome}
+            />
+            <TextInput
+              placeholder="Quantidade da caixa"
+              style={styles.inputs}
+              onChangeText={(newText) => setQuantCaixa(newText)}
+              value={quantCaixa}
+              keyboardType="numeric"
+            />
+            <TextInput
+              placeholder="Quantidade por dia"
+              style={styles.inputs}
+              onChangeText={(newText) => setQuantDia(newText)}
+              value={quantDia}
+              keyboardType="numeric"
+            />
+            <TouchableOpacity
+              style={styles.caixaAd}
+              onPress={() => {
+                if (!nome || !quantCaixa || !quantDia) {
+                  alertaCamposVazios();
+                } else {
+                  setAdicionando(true);
+                  adicionarRemedio(nome.trim(), quantCaixa, quantDia).then(
+                    () => {
+                      pegaRemedios().then(() => {
+                        setAdicionando(false);
+                        navigation.navigate("Remedios");
+                      });
+                    }
+                  );
+                }
+              }}
+            >
+              <Text style={styles.adicionar}>Adicionar</Text>
+            </TouchableOpacity>
+            {adicionando && <ActivityIndicator size="large" />}
+          </KeyboardAvoidingView>
+        </ScrollView>
       </Animatable.View>
     </SafeAreaView>
   );

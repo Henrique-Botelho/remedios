@@ -9,12 +9,12 @@ export const styles = StyleSheet.create({
     backgroundColor: "#026f6e",
   },
   titulo: {
+    height: 70,
+    width: '100%',
     padding: 10,
     gap: 10,
     justifyContent: "flex-start",
     alignItems: "center",
-    height: 70,
-    width: '100%',
     flexDirection: 'row',
   },
   textTitulo: {
@@ -23,11 +23,11 @@ export const styles = StyleSheet.create({
   },
   page: {
     flex: 1,
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
+    width: '100%',
     backgroundColor: "#FFF",
-    width: "100%",
-    padding: 30,
+    padding: 10,
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5
   },
   inputs: {
     marginVertical: 20,
