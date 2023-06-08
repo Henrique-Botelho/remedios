@@ -1,4 +1,5 @@
 import React from "react";
+import { StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -13,38 +14,26 @@ import EditaRemedio from "./pages/EditaRemedio";
 export default function Routes() {
   return (
     <NavigationContainer>
+      <StatusBar backgroundColor="#09456c" barStyle="light-content"  />
       <MainProvider>
         <Stack.Navigator>
           <Stack.Screen
             name="Remedios"
             component={Remedios}
-            options={headerOptions}
+            options={{headerShown: false}}
           />
           <Stack.Screen
             name="AdRemedio"
             component={AdRemedio}
-            options={headerOptions}
+            options={{headerShown: false}}
           />
           <Stack.Screen
             name="EditaRemedio"
             component={EditaRemedio}
-            options={headerOptions}
+            options={{headerShown: false}}
           />
         </Stack.Navigator>
       </MainProvider>
     </NavigationContainer>
   );
 }
-
-const headerOptions = {
-  title: "Controle de Remédios",
-  headerStyle: {
-    backgroundColor: "#ebf2f2",
-    height: 90
-  },
-  headerTitleAlign: "center",
-  headerTintColor: "#66af91",
-  headerTitleStyle: {
-    fontSize: 20
-  },
-};

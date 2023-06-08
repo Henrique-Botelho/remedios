@@ -4,15 +4,16 @@ import {
   View,
   Text,
   TextInput,
-  StyleSheet,
   TouchableOpacity,
   ActivityIndicator,
-  ImageBackground,
   KeyboardAvoidingView,
-  Alert
+  Alert,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import Footer from "../../components/Footer";
 import { styles } from "./styles";
+
+import * as Animatable from "react-native-animatable";
 
 import { MainContext } from "../../context/mainContext";
 
@@ -26,73 +27,66 @@ export default function AdRemedio({ navigation }) {
   const [adicionando, setAdicionando] = useState(false);
 
   const alertaCamposVazios = () => {
-    Alert.alert('Campos Vazios', 'Todos os campos devem ser preenchidos', [
+    Alert.alert("Campos Vazios", "Todos os campos devem ser preenchidos", [
       {
-        text: 'Ok',
-        onPress: () => null
-      }
-    ])
-  }
+        text: "Ok",
+        onPress: () => null,
+      },
+    ]);
+  };
 
   return (
-    <KeyboardAvoidingView
-      keyboardVerticalOffset={5}
-      style={styles.safeArea}
-      behavior="height"
-    >
-      <View style={styles.caixaImg}>
-        <ImageBackground
-          style={styles.imgAdRem}
-          source={require("../../../assets/adrem.jpg")}
-        >
-          <View style={styles.caixaTitPagina}>
-            <Text style={styles.titPagina}>Adicionar Remédio</Text>
-          </View>
-        </ImageBackground>
-      </View>
-      <View style={styles.page}>
-        <Text style={styles.titInputs}>Nome</Text>
-        <TextInput
-          maxLength={20}
-          style={styles.inputs}
-          onChangeText={(newText) => setNome(newText)}
-          value={nome}
-        />
-        <Text style={styles.titInputs}>Quantidade da caixa</Text>
-        <TextInput
-          style={styles.inputs}
-          onChangeText={(newText) => setQuantCaixa(newText)}
-          value={quantCaixa}
-          keyboardType="numeric"
-        />
-        <Text style={styles.titInputs}>Quantidade por dia</Text>
-        <TextInput
-          style={styles.inputs}
-          onChangeText={(newText) => setQuantDia(newText)}
-          value={quantDia}
-          keyboardType="numeric"
-        />
-        <TouchableOpacity
-          style={styles.caixaAd}
-          onPress={() => {
-            if (!nome || !quantCaixa || !quantDia) {
-              alertaCamposVazios();
-            } else {
-              setAdicionando(true);
-              adicionarRemedio(nome.trim(), quantCaixa, quantDia).then(() => {
-                pegaRemedios().then(() => {
-                  setAdicionando(false);
-                  navigation.navigate("Remedios");
-                });
-              });
-            }
-          }}
-        >
-          <Text style={styles.adicionar}>Adicionar</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <Animatable.View animation="fadeInLeft" delay={500} style={styles.titulo}>
+        <TouchableOpacity onPress={() => navigation.navigate("Remedios")}>
+          <Ionicons name="arrow-back" size={30} color="#FFF" />
         </TouchableOpacity>
-        {adicionando && <ActivityIndicator size="large" />}
-      </View>
-      <Footer />
-    </KeyboardAvoidingView>
+        <Text style={styles.textTitulo}>Adicionar Remédio</Text>
+      </Animatable.View>
+      <Animatable.View animation="fadeInUp" style={styles.page}>
+        <KeyboardAvoidingView behavior="position" enabled style={styles.form}>
+          <TextInput
+            placeholder="Nome"
+            maxLength={20}
+            style={styles.inputs}
+            onChangeText={(newText) => setNome(newText)}
+            value={nome}
+          />
+          <TextInput
+            placeholder="Quantidade da caixa"
+            style={styles.inputs}
+            onChangeText={(newText) => setQuantCaixa(newText)}
+            value={quantCaixa}
+            keyboardType="numeric"
+          />
+          <TextInput
+            placeholder="Quantidade por dia"
+            style={styles.inputs}
+            onChangeText={(newText) => setQuantDia(newText)}
+            value={quantDia}
+            keyboardType="numeric"
+          />
+          <TouchableOpacity
+            style={styles.caixaAd}
+            onPress={() => {
+              if (!nome || !quantCaixa || !quantDia) {
+                alertaCamposVazios();
+              } else {
+                setAdicionando(true);
+                adicionarRemedio(nome.trim(), quantCaixa, quantDia).then(() => {
+                  pegaRemedios().then(() => {
+                    setAdicionando(false);
+                    navigation.navigate("Remedios");
+                  });
+                });
+              }
+            }}
+          >
+            <Text style={styles.adicionar}>Adicionar</Text>
+          </TouchableOpacity>
+          {adicionando && <ActivityIndicator size="large" />}
+        </KeyboardAvoidingView>
+      </Animatable.View>
+    </SafeAreaView>
   );
 }
